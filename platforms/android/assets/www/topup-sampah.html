@@ -3,7 +3,7 @@
   <div class="navbar bg-blue">
     <div class="navbar-inner">
       <div class="left"><a href="forms.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
-      <div class="center">Top Sampah</div>
+      <div class="center">Topup Sampah</div>
       <div class="right">
 
       <!-- <a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a> -->
@@ -15,19 +15,19 @@
     <!-- <div class="content-block-title">Pencarian</div> -->
     <form class="list-block inputs-list ajax-submit form-pencarian" id="form-pencarian"  
     method="get" 
-    action="http://gis.35utech.com/index.php?r=gis/cari" >
+    action="http://gis.35utech.com/index.php?r=gis/topupPoint" >
       <ul>
 
         <li>
           <div class="item-content">
           <div class="item-media" style="width:40px"><i class="material-icons">vpn_key</i></div>
           <div class="item-inner"> 
-              <div class="item-title label">Kata Kunci</div>
+              <div class="item-title label">Jumlah (KG)</div>
               <div class="item-input">
 
               
                 <a href="#" class="item-link smart-selec t">
-                  <input placeholder="Kata Kunci" type="text" name="kata_kunci" id="kata_kunci">
+                  <input placeholder="Kata Kunci" type="text" name="jumlah_kg" id="jumlah_kg">
                 
                 </a> 
 
@@ -43,12 +43,18 @@
           <div class="item-content">
           <div class="item-media" ><i class="icon material-icons">business</i></div>
           <div class="item-inner"> 
-              <div class="item-title label">Jenis Usaha</div>
+              <div class="item-title label">Jenis Sampah</div>
               <div class="item-select">
 
               
                 <a href="#" class="item-link smart-selec t">
-                  <select name="jenisusaha" id="jenisusaha" multiple="multiple"></select>
+                  <select name="jenissampah" id="jenissampah">
+                    <option value="2000">Pelastik</option>
+                    <option value="3000">Kaca</option>
+                    <option value="4000">Kardus</option>
+                    <option value="10000">Tembaga</option>
+                    <option value="1000">Kertas/Koran</option>
+                  </select>
                 
                 </a> 
 
@@ -61,22 +67,7 @@
 
           </li>
 
-          <li>
-          <div class="item-content">
-            <div class="item-media"><i class="icon material-icons">check</i></div>
-            <div class="item-inner"> 
-              <div class="item-title label">Cari Tempat Terdekat</div>
-              <div class="item-input">
-                <label class="label-switch">
-                  <input type="checkbox" name="isnear" id="isnear" value="1" checked  />
-                  <div class="checkbox bg-blue"></div>
-                </label>
-              </div>
-            </div>
-          </div>
-          <input type="hidden" id="val2-lat" name="lat" >
-          <input type="hidden" id="val2-lon" name="lon" >
-        </li>
+
             <li style="display: none;">
           <div class="item-content">
           <div class="item-media" ><i class="icon material-icons">business</i></div>
@@ -168,7 +159,7 @@
   <p class="buttons-row">
   <button type="submit" class="button button-big button-fill button-raised color-red">
   <i class="fa fa-search"></i>
-  Cari
+  Jual Sampah
   </button>
   </p>
   </div>
