@@ -4028,16 +4028,38 @@ $$(document).on('page:init', '.page[data-page="request-list"]', function (e) {
 
 });
 
+// function getTagihan(username){
+//    var username = window.localStorage.getItem("username");
+
+// }
 $$(document).on('page:init', '.page[data-page="request-list-bayar"]', function (e) {
   var username = window.localStorage.getItem("username");
     $$.ajax({
       url : server+"/index.php?r=Gis/GetPoin",
       data : "username="+username,
       success : function(r){
-          var data = JSON.parse(r);
-          alert(data.poin);
-        $$("#sewpay-uang").html(numberWithCommas(data.poin) );
-        $$("#sewpay-uang").attr("asli",data.poin);
+        var data = JSON.parse(r);
+            var poin = data.poin;
+           $$("#sewpay-uang").html(" - "+numberWithCommas(poin) );
+            $$("#sewpay-uang").attr("asli",data.poin);
+        // var tagih
+            $$.ajax({
+                url : server+"/index.php?r=Gis/getTagihan",
+                data : "username="+username,
+                success : function(r){
+                  // alert(r);
+                  $$(".nilai-tagihan").html(numberWithCommas(r)) ;
+                  $$(".nilai-tagihan").attr("asli",r);
+                  var takhir = parseInt(r)-parseInt(poin);
+                  $$(".nilai-akhir").html(numberWithCommas(takhir));
+                  // var data2 = JSON.parse(r);
+                  // $$("#sewpay-uang").html(numberWithCommas(data.poin) );
+                  // $$("#sewpay-uang").attr("asli",data.poin);
+                },error: function(e){
+                  alert(JSON.stringify(e));
+                }
+            });
+     
         // alert(r);
           // return data.poin;
           //   // alert(data.poin);
@@ -4379,6 +4401,15 @@ function getListOrder(username, tabActive){
 
      });
 
+     $$(document).on("click",'.btn-topup-sampah', function (e) {
+         mainView.router.load({
+        url:"topup-sampah.html",
+          query:{
+            id: 123
+          }    
+        });
+
+     })
      $$(document).on("click",'.btn-topup', function (e) {
        e.preventDefault();
        myApp.closePanel("right");
@@ -5846,7 +5877,8 @@ function appendToList(result_marker){
 // }else{
 // img = "http://is.tnu.edu.vn/wp-content/themes/motive/images/no_image.jpg";
 //     }  
-          var gambar  = server+"/images/bast/"+v.gambar;
+          // var gambar  = server+"/images/bast/"+v.gambar;
+          var gambar  = server+"/images/bast/120.jpg";
           var tag_img = "<div style='background-image:url("+gambar+");width:80px;height:50px;background-size:cover'  ></div>";
           // alert(gambar);
 //             <i class="fa fa-home fa-3x"></i>
