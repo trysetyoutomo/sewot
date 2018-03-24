@@ -1,0 +1,100 @@
+<div data-page="add-loker" class="page">
+  <div class="navbar bg-blue">
+    <div class="navbar-inner">
+      <div class="left">
+
+      <a class="back link icon-only">
+
+       <i class="icon icon-back"></i>
+
+      </a>
+        <span class="preloader preloader-white" style="display:none"></span>
+
+      </div>
+      
+      <div class="center" id="title-add-produk">Gambar</div>
+      <div class="right">
+     
+      <a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i>
+      </a>
+     
+
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+
+   
+
+<form enctype="multipart/form-data" class="list-block inputs-list ajax-submit form-add-loker"   method="POST" id="form-add-ukm"
+    action="http://gis.35utech.com/index.php?r=UkmLoker/createajax">
+<ul>
+<li>
+<div class="item-content">
+<div class="item-media"><i class="fa fa-file"></i></div>
+<div class="item-inner">
+<div class="item-title label">Nama </div>
+<div class="item-input item-input-field">
+
+
+<input type="hidden"  placeholder="" name="UkmLoker[ukm_id]"  id="UkmLoker_ukm_id" >
+<input type="hidden"  placeholder="" name="UkmLoker[id]"  id="UkmLoker_id" >
+<input type="text"  placeholder="" name="UkmLoker[nama]" id="UkmLoker_nama" >
+</div>
+</div>
+</div>
+</li>
+
+
+<li class="align-top">
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">chat_bubble_outline</i></div>
+<div class="item-inner">
+<div class="item-title label">Keterangan</div>
+<div class="item-input item-input-field">
+<textarea class="resizable" name="UkmLoker[keterangan]" id="UkmLoker_keterangan"></textarea>
+</div>
+</div>
+</div>
+</li>
+
+
+<li class="align-top">
+<div class="item-content">
+
+<div class="item-inner">
+<div class="item-title label">Foto</div>
+<div class="item-input item-input-field" >
+<input  type="file" placeholder="" accept="image/*;capture=camera"  name="gambar" id="Produk_gambar_2">
+
+<img id="myImage" style="width:100%;margin-top:10px;" />
+</div>
+</div>
+</div>
+</li
+
+
+
+
+
+
+<li>    
+  <div class="content-block">
+
+  <p class="buttons-row">
+  <button type="submit" 
+   class=" bg-red button button-big button-fill button-raised color-blue">
+  <i class="fa fa-save"></i>
+  Simpan
+  </button>
+  </p>
+  </div>
+
+</li>
+
+
+
+</ul>
+</form>
+
+</div>

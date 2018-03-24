@@ -1,0 +1,188 @@
+
+<div data-page="add-rek-umkm" class="page">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left"><a href="forms.html" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+      <div class="center">Rekomendasikan UMKM</div>
+      <div class="right"><a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i></a></div>
+    </div>
+  </div>
+  <div class="page-content">
+<form class="list-block inputs-list ajax-submit form-add-ukm"   method="get" 
+    action="http://gis.35utech.com/index.php?r=ukm/createajax">
+<ul>
+<li>
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">person_outline</i></div>
+<div class="item-inner">
+<div class="item-title label">Nama UMKM</div>
+<div class="item-input item-input-field">
+<input type="text"  placeholder="" name="Ukm[nama]" id="Ukm_nama" >
+</div>
+</div>
+</div>
+</li>
+<li >
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">person_outline</i></div>
+<div class="item-inner">
+<div class="item-title label">Nama Pemilik</div>
+<div class="item-input item-input-field">
+<input type="text"  placeholder="" name="Ukm[pemilik]" id="Ukm_pemilik" >
+</div>
+</div>
+</div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-media"><i class="material-icons">dehaze</i></div>
+<div class="item-inner">
+<div class="item-title label">Tipe UMKM</div>
+<div class="item-input item-input-field">
+	<select id="Ukm_tipe"  name="Ukm[tipe]" >
+		<option value="1">Bangunan</option>
+		<option value="2">Tenda</option>
+	</select>
+</div>
+</div>
+</div>
+</li>
+<!-- <li>
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">email</i></div>
+<div class="item-inner">
+<div class="item-title label">E-mail</div>
+<div class="item-input item-input-field">
+<input type="email" placeholder="" class="" name="Ukm[email]" id="Ukm_email">
+</div>
+</div>
+</div>
+</li> -->
+<li>
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">language</i></div>
+<div class="item-inner">
+<div class="item-title label">Kategori UMKM</div>
+<div class="item-input item-input-field">
+<select id="jenisusaha"  name="Ukm[kategori]" >
+</select>
+</div>
+</div>
+</div>
+</li>
+
+<li>
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">call</i></div>
+<div class="item-inner">
+<div class="item-title label">Telepon (Username)</div>
+<div class="item-input item-input-field">
+<input type="tel" placeholder="" name="Ukm[telepon]" id="Ukm_telepon">
+</div>
+</div>
+</div>
+</li>
+
+<li class="align-top">
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">chat_bubble_outline</i></div>
+<div class="item-inner">
+<div class="item-title label">Keterangan</div>
+<div class="item-input item-input-field">
+<textarea class="resizable" name="Ukm[keterangan]" id="Ukm_keterangan"></textarea>
+</div>
+</div>
+</div>
+</li>
+
+
+
+
+<li class="align-top">
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">group</i></div>
+<div class="item-inner">
+<div class="item-title label">Kelurahan</div>
+<div class="item-input item-input-field">
+<select  name="Ukm[kelurahan]" id="Ukm_kelurahan">
+	
+</select>
+</div>
+</div>
+</div>
+</li>
+
+
+<li class="align-top">
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">group</i></div>
+<div class="item-inner">
+<div class="item-title label">RW</div>
+<div class="item-input item-input-field">
+<select  name="Ukm[rw]" id="Ukm_rw">
+  
+</select>
+</div>
+</div>
+</div>
+</li>
+
+
+
+
+
+
+
+<li class="align-top">
+<div class="item-content">
+<!-- <div class="item-media"><i class="material-icons">location_on</i></div> -->
+<div class="item-inner">
+<div class="item-title label">
+<!-- <a style="margin-bottom:40px;background-color:#D85404;position:fixed" href="#" class="floating-button current-location-on-form "> -->
+
+<a href="#" class="current-map">
+  <i class="material-icons">my_location</i>
+</a>
+</div>
+<div class="item-input item-input-field">
+<div id="map-area">
+	
+</div>
+</div>
+</div>
+</div>
+</li>
+
+<li class="align-top">
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">chat_bubble_outline</i></div>
+<div class="item-inner">
+<div class="item-title label">Alamat</div>
+<div class="item-input item-input-field" >
+<textarea id="alamat" class="resizable" name="Ukm[alamat]" id="Ukm_alamat" ></textarea>
+<input  type="hidden" placeholder="" name="Ukm[lat]" id="Ukm_lat">
+<input  type="hidden" placeholder="" name="Ukm[lon]" id="Ukm_lon">
+</div>
+</div>
+</div>
+</li>
+
+<li>    
+  <div class="content-block">
+
+  <p class="buttons-row">
+  <button type="submit" class="button button-big button-fill button-raised color-blue">
+  <i class="icon material-icons">add</i>
+  Simpan
+  </button>
+  </p>
+  </div>
+
+</li>
+
+
+
+</ul>
+</form>
+
+</div>

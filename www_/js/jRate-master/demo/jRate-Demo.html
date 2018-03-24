@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title> jRate - JQuery Plugin | toolitup.com</title>
+	
+	<script src="jquery.min.js"></script>
+	<script src="../src/jRate.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var that = this;
+			var toolitup = $("#jRate").jRate({
+				rating: 1,
+				strokeColor: 'black',
+				precision: 1,
+				minSelected: 1,
+				onChange: function(rating) {
+					//console.log("OnChange: Rating: "+rating);
+				},
+				onSet: function(rating) {
+					console.log("OnSet: Rating: "+rating);
+				}
+			});
+			
+			$('#btn-click').on('click', function() {
+				toolitup.setRating(0);				
+			});
+			
+		});
+	</script>
+	
+</head>
+<body>
+	<h2>jRate Demo Page</h2>
+	<div id="jRate" style="height:50px;width: 200px;"></div>
+	<button id="btn-click" style="margin:0 500px;">Reset Me</button>
+	
+</body>
+</html>

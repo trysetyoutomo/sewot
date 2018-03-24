@@ -1,0 +1,136 @@
+
+<div data-page="edit-umkm" class="page">
+  <div class="navbar bg-blue">
+    <div class="navbar-inner">
+      <div class="left">
+      <a class="back link icon-only"><i class="icon icon-back"></i></a>
+      </div>
+      
+      <div class="center">Ubah Tukang Dagang</div>
+      <div class="right">
+     
+   <!--    <a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i>
+      </a>
+      -->
+
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+
+   
+
+<form enctype="multipart/form-data" class="list-block inputs-list ajax-submit form-edit-ukm"   method="POST" id="form-add-ukm"
+    action="http://gis.35utech.com/index.php?r=ukm/ubahajax">
+    <input type="hidden"  placeholder="" name="Ukm[id]"  id="Ukm_id" >
+<ul>
+<li>
+  <div class="item-content">
+    <div class="item-media" style="width:40px"><i class="icon material-icons">person_outline</i></div>
+    <div class="item-inner not-empty-state" style="float:left">
+    <div class="item-title label">Nama Usaha</div>
+    <div class="item-input item-input-field">
+    <input type="text"  placeholder="" name="Ukm[nama]" id="Ukm_nama" >
+    </div>
+    </div>
+  </div>
+</li>
+<li >
+<div class="item-content">
+<div class="item-media" style="width:40px"><i class="icon material-icons">person_outline</i></div>
+<div class="item-inner not-empty-state" style="float:left">
+<div class="item-title label">Nama Pemilik</div>
+<div class="item-input item-input-field">
+<input type="text"  placeholder="" name="Ukm[pemilik]" id="Ukm_pemilik" >
+</div>
+</div>
+</div>
+</li>
+<li >
+<div class="item-content">
+<div class="item-media"><i class="material-icons">dehaze</i></div>
+<div class="item-inner">
+<div class="item-title label" >Tipe Tukang Dagang</div>
+<div class="item-input item-input-field">
+	<select id="Ukm_tipe"  name="Ukm[tipe]" >
+		<option value="1">Bangunan</option>
+    <option value="2">Tenda</option>
+		<option value="3">Keliling</option>
+	</select>
+</div>
+</div>
+</div>
+</li>
+<li class="kendaraan-section" style="display: none;">
+<div class="item-content">
+<div class="item-media"><i class="material-icons">dehaze</i></div>
+<div class="item-inner">
+<div class="item-title label" id="label-add-umkm">Kendaraan</div>
+<div class="item-input item-input-field">
+  <select id="Ukm_kendaraan"  name="Ukm[kendaraan]" >
+    <option value="1">Gerobak</option>
+    <option value="2">Motor</option>
+    <option value="3">Mobil</option>
+    <option value="4">Sepeda</option>
+    <option value="5">Tanpa Kendaraan (Freelancer)</option>
+  </select>
+</div>
+</div>
+</div>
+</li>
+<!-- <li>
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">email</i></div>
+<div class="item-inner">
+<div class="item-title label">E-mail</div>
+<div class="item-input item-input-field">
+<input type="email" placeholder="" class="" name="Ukm[email]" id="Ukm_email">
+</div>
+</div>
+</div>
+</li> -->
+<li>
+<div class="item-content">
+<div class="item-media"><i class="icon material-icons">dehaze</i></div>
+<div class="item-inner">
+<div class="item-title label">Kategori Tukang Dagang</div>
+<div class="item-input item-input-field">
+<select required id="Ukm_kategori"  name="Ukm[kategori]" >
+<option>Pilih</option>
+</select>
+</div>
+</div>
+</div>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>    
+  <div class="content-block">
+
+  <p class="buttons-row">
+  <button type="submit" id="submit-add-umkm" class="button button-big button-fill button-raised color-blue">
+  <i class="fa fa-save"></i>
+  Ubah
+  </button>
+  </p>
+  </div>
+
+</li>
+
+
+
+</ul>
+</form>
+
+</div>

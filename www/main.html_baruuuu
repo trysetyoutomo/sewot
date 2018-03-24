@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <meta name="theme-color" content="#2196f3"> -->
+    <meta name="theme-color" content="green">
+    <title></title>
+<!-- 
+ -->
+    <!-- <link rel="stylesheet" href="lib/framework7/css/framework7.min.css"> -->
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.css">
+  
+    <!-- moment JS triana ee -->
+    <script type="text/javascript" src="js/moment/moment.js"></script>
+
+    <!-- <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="lib/framework7/css/material-icons.css">
+    <!-- swipebox -->
+    <!-- <link rel="stylesheet" href="lib/framework7/css/kitchen-sink.css"> -->
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="css/fonta/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/custom.css" type="text/css">
+  </head>
+  <body>
+  
+  <!--   <div class="wrapper-loader">
+      <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
+    </div> -->
+  
+  <div class="statusbar-overlay"></div>
+  <div class="panel-overlay" ></div>
+   
+    <div class="panel panel-left panel-cover">
+      <div class="view navbar-fixed">
+        <div class="pages">
+          <div data-page="panel-left" class="page">
+            <div class="navbar bg-red">
+              <div class="navbar-inner">
+                <div class="center"> 
+                <i class="fa fa-list"></i> Tukang Dagang</div>
+              </div>
+            </div>
+            <div class="page-content">
+             <form class="searchbar searchbar-init searchbar-active" 
+                data-search-list=".request-list" data-search-in=".item-title" style="background-color: #4caf50" >
+
+                <div class="searchbar-input">
+                <input type="search" placeholder="Cari " class=""><a href="#" class="searchbar-clear"></a></div>
+              
+              </form>
+              <div class="list-block request-list searchbar-found media-list" style="margin-top: -25px;">
+                <div class="list-block" id="direction"></div>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--end of left panel -->
+
+
+    <div class="panel panel-right panel-cover pull-to-refresh-content">
+      <div class="view view-right">
+        <div class="pages navbar-fixed">
+          <div data-page="panel-right1" class="page">
+            <div class="navbar bg-blue">
+              <div class="navbar-inner">
+                <div class="center" id=""> <i class="fa fa-user"></i> 
+                
+                 Informasi Pengguna 
+
+
+                </div>
+
+                <!-- <i class="fa fa-times close-panel pull-right"></i> -->
+              </div>
+            </div>
+            
+            <div class="page-content">
+              <div class="content-block">
+                <p  id="UMKM_keterangan"></p>
+              </div>
+             
+              <div class="list-block media-list">
+                  <ul>
+                    <li>
+                    <div id="box-poin">
+                        <div class="item-content wrapper-tracking">
+                            <div class="item-inner">
+                            <div class="item-title label">Dapat Di Tracking ? </div>
+                            <div class="item-input">
+                            <label class="label-switch">
+                                <input type="checkbox" id="check-tracking2"  >
+                               <div class="checkbox" id="check-tracking">
+                                 
+                               </div>
+                            </label>
+                            </div>
+                            </div>
+                        </div>
+                      <div class="row">
+                          <div class="col-100">
+                            
+                          </div>
+
+                          <div class="col-40"  style="text-align:center">
+                             <a  class="btn-refresh-poin" >
+                             <i class="fa fa-refresh fa-2x"></i>
+                            </a>
+                            <H5 style="text-align:center;margin: 0 auto;" >
+                              POINKU 
+                            </H5>  
+                          </div>
+                          <div class="col-20 ">
+                            <h3>
+                              
+                              <i style="color:#D85404" class="fa fa-trophy fa-2x" aria-hidden="true"></i>
+                            </h3>
+
+                          </div>
+                          <div class="col-40 ">
+
+                            <h3 style="text-align:center" id="value-poinku">0</h3>
+                            
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-100" style="padding:0 8px 8px 8px">
+
+                              <div class="buttons-ro w">
+                                
+                              <a style="color:white;" href="" class="button button-big button-fill button-raised bg-blue  btn-riwayat-rekomendasi ">
+                                  <i class="fa fa-history" aria-hidden="true"></i> Riwayat Ajakan
+                              </a>
+                              <hr class="bg-red" style="height:5px;margin-top:-2px">
+                              <a style="color:white;padding:0 8px 8px 8px" href="" class="button button-big button-fill button-raised bg-blue btn-tukar-poin">
+                                  <i class="fa fa-clone" aria-hidden="true"></i> Tukar Poin
+                              </a>
+                              </div>
+
+
+                              <hr class="bg-red"  style="height:5px;margin-top:-2px">
+                          </div>
+                      </div>
+                    </div>
+                    </li>
+
+
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                        <i class="fa fa-user "></i>
+
+                        </div>
+
+
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">Username</div>
+                          </div>
+                          <div class="item-text" id="User_username"></div>
+                        </div></a></li>
+                   
+                      
+                        <li style="display:none" id="row_User_pemilik" >
+
+                        <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                        <i class="fa fa-user "></i>
+
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">Pemilik</div>
+                          </div>
+                          <div class="item-text" id="User_pemilik"></div>
+                        </div></a>
+                      </li>
+
+                     <li><a href="#" class="item-link item-content">
+                        <div class="item-media">
+                     <i class="material-icons md-36">accessibility</i>
+
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">Akses</div>
+                          </div>
+                          <!-- <div class="item-subtitle">Queen</div> -->
+                          <div class="item-text" id="User_akses"></div>
+                        </div></a>
+                      </li>
+
+                      <li id="li_User_masaaktif">
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                  <i class="material-icons">date_range</i>
+
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">Masa Aktif</div>
+                          </div>
+                          <!-- <div class="item-subtitle">Queen</div> -->
+                          <div class="item-text" id="User_masaaktif"></div>
+                        </div></a>
+                      </li>
+
+                      <li>
+
+                      </li>
+
+                 
+                  </ul>
+
+                   <div id="li_button_ukmku" class="buttons-row" style="padding:0 8px 8px 8px">
+                    <a href="#" class=" button button-big button-fill button-raised bg-red ">
+                    <i class="fa fa-building-o "></i>
+                      Usahaku 
+                    </a>
+                  </div>
+               <!--     <div  class="buttons-row" style="padding:0 8px 8px 8px">
+                    <a href="#" class=" btn-pengenalan button button-big button-fill button-raised bg-red ">
+                    <i class="fa fa-building-o "></i>
+                      Pengenalan 
+                    </a>
+                  </div> -->
+
+<!-- 
+                   <div id="li_button_panggilan" class="buttons-row" style="padding:0 8px 8px 8px">
+                    <a href="#" class=" button button-big button-fill button-raised bg-red ">
+                    <i class="fa fa-phone "></i>
+                      Panggilan 
+                    </a>
+                  </div> -->
+
+                    <div id="li_button_fav_saya" class="buttons-row" style="padding:0 8px 8px 8px">
+                      <a href="#" 
+                        class=" button button-big button-fill button-raised bg-red ">
+                      <i class="fa fa-star "></i>
+                         Favorit 
+                      </a>
+                    </div>
+
+                    <div id="li_button_kat_fav" class="buttons-row" style="padding:0 8px 8px 8px">
+                      <a href="tanya-favorite.html" 
+                        class=" button button-big button-fill button-raised bg-red ">
+                      <i class="fa fa-star "></i>
+                        Kategori Favorit 
+                      </a>
+                    </div>
+
+                  <!--   <div id="li_button_peng_saya" class="buttons-row" style="padding:0 8px 8px 8px">
+                      <a href="#" 
+                        class=" button button-big button-fill button-raised bg-red ">
+                      <i class="fa fa-gear "></i>
+                         Pengaturan 
+                      </a>
+                    </div> -->
+
+                  <div id="li_button_permintaan" class="buttons-row" style="padding:0 8px 8px 8px;display: none;">
+                    <a href="#" class=" button button-big button-fill button-raised bg-red ">
+                    <i class="fa fa-sign-in "></i>
+                      Permintaan Konfirmasi
+
+                  </a>
+
+
+                  </div>
+
+                  <div class="buttons-row btn-add-umkm" style="padding:0 8px 8px 8px;display: none;">
+                    <a href="#" id="karang-add-umkm"  
+                     
+                      class=" button button-big button-fill button-raised bg-red ">
+                    <i class="fa fa-plus "></i>
+                      Tambah Pedagang  
+
+                      </a>
+
+
+                  </div>
+                   <div class="buttons-row btn-data-umkm" style="padding:0 8px 8px 8px;display: none;">
+                    <a href="#"  
+                     
+                        class=" button button-big button-fill button-raised bg-red ">
+                      <i class="fa fa-list "></i>
+                        Daftar Pedagang  
+
+                      </a>
+
+
+                  </div>
+                    <div class="buttons-row btn-dashboard-admin " style="padding:0 8px 8px 8px;display: none;">
+                    <a href="#"  
+                     
+                        class=" button button-big button-fill button-raised bg-red ">
+                      <i class="fa fa-dashboard "></i>
+                       DASHBOARD  
+
+                      </a>
+
+
+                  </div>
+
+                  <div id="li_button_verifikasi" class="buttons-row " style="padding:0 8px 8px 8px">
+                    <a href="#" 
+                     class=" btn-verifikasi button button-big button-fill button-raised bg-red ">
+                            <i class="fa fa-check "></i>
+                      Verifikasi  
+                    </a>
+
+
+
+                  </div>
+                <!--   <p id="li_button_rekomendasi" class="buttons-row " style="padding:0 8px 8px 8px">
+                    <a href="#" s
+                     
+                      class=" button button-big button-fill button-raised bg-red ">
+                   <i class="fa fa-comment"></i>
+                      Rekomendasikan UMKM  
+
+                      </a>
+
+
+                  </p> -->
+
+
+                  <div class="buttons-row" style="padding:0 8px 8px 8px;display: none;">
+                    <a href="" class=" btn-berita button button-big button-fill button-raised bg-red ">
+                     <i class="fa fa-newspaper-o" aria-hidden="true"></i> Berita UMKM </a>
+                  </div>
+
+                  <div class="buttons-row" style="padding:0 8px 8px 8px">
+                    <a href="" class=" btn-user-out button button-big button-fill button-raised bg-red ">
+                     <i class="fa fa-sign-out" aria-hidden="true"></i> Keluar Akun </a>
+                  </div> 
+              <!--     
+                  -->
+
+                 <!--     
+                     <div class="buttons-row" style="padding:0 8px 8px 8px">
+
+                  
+                    <a 
+
+                    href="" class="btn-tutup-app  button button-big button-fill button-raised bg-red ">
+                     <i class="fa fa-power-off" aria-hidden="true"></i> Tutup </a>
+                     </div> -->
+               
+                </div>
+
+
+                  
+            </div>
+                
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- main -->
+
+    <div class="views">
+
+      <div class="view view-main">
+        <div class="pages navbar-fixed">
+
+   
+          <!-- pull-to-refresh-content -->
+          <div data-page="home-index" class="page ">
+            
+             <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+             </div>
+          
+            <div class="navbar bg-blue">
+              <div class="navbar-inner">
+            
+                <div class="center">
+                <img src="/img/warna.png" style="width: 30px;top: 10px;position: relative;">
+                <!-- <i class=" fa fa-map"></i> -->
+                  Tukang Dagang 
+                </div>
+                <div class="right">
+                <a href="#" data-panel="left" class="open-panel link icon-only">
+
+                <i class="fa fa-map-marker"></i></a>
+
+                <a style="display: none;" href="order.html"   class="link btn-list-order ">
+                  <i class="fa fa-clock-o" aria-hidden="true">
+                  <span class="badge color-red order-qty-notif" style="display: none;" >0</span>
+                  </i>
+                </a>
+                <a href="#"  class="link icon-only cari-semua ">
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                </a>
+
+              <!--    <a href="#"  class="link icon-only btn-tutup-app">
+                  <i class="fa fa-power-off" aria-hidden="true"></i>
+                </a> -->
+                    <!--  <a href="#" class="btn-pengenalan link icon-only">
+                      <i class="fa fa-question-circle" aria-hidden="true"></i> 
+                     </a>
+ -->
+                     <a style="display: none;" href="list-panggilan.html" class="notification-panggilan link icon-only">
+                      <i class="fa fa-bell" aria-hidden="true">
+                        
+                       <span class="badge color-red panggilan-qty-notif" style="display: none;" >0</span>
+                     
+                      </i> 
+                      <!-- <div class="bulat-notif"></div> -->
+                      </a>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="page-content " data-ptr-distance="55" >
+
+             
+
+              <input type="text" id="val-lat" style="display:none" >
+              <input type="text" id="val-lon" style="display:none">
+
+<!--               <input type="text" id="default_latitude" placeholder="Latitude"/>
+              <input type="text" id="default_longitude" placeholder="Longitude"/>
+ -->              
+
+              <a style="margin-bottom:40px;background-color:#D85404" href="#" class="floating-button current-location ">
+                 <i class="material-icons">my_location</i>
+              </a>
+              
+
+              <div class="speed-dial float-button-cepat" style="display:none">
+                 <a href="#" class="floating-button float-add-news bg-red">
+                 <i class="icon icon-plus"></i>
+                 <i class="icon icon-close"></i></a>
+                 <div class="speed-dial-buttons">
+
+                  <a href="#" class="bg-blue btn-add-status"><i class="fa fa-pencil"></i></a>
+                  <!-- <a href="#" class="bg-blue"><i class="fa fa-street-views"></i></a> -->
+                 </div>
+              </div>
+              <!-- <div class="content-block-title">Welcome To Framework7</div> -->
+             <!--  <div class="content-block">
+              <a href="about.html" class="button button-raised">About Framework7</a>
+              </div> -->
+               <!-- <ul id='messages'></ul> -->
+              <div id="realtime-on" style="
+                margin: 9px 4px;
+                display: none;
+                position: absolute;
+                z-index: 9999;
+                padding: 10px;
+                box-sizing: border-box;
+                border: 1px solid transparent;
+                background: rgba(255,255,255, 0.9);;
+                border-radius: 8px;">
+                <div class="realtime-circle-on" style="
+                  border: 1px solid transparent;
+                  height: 15px;
+                  width: 15px;
+                  border-radius: 100%;
+                  background: rgba(50,205,50, 0.8);"></div>
+                <span style="margin: -3px 8px">mode realtime</span>
+              </div>
+               <div id="map"></div>
+             <!--  <div id="marker-choose">
+                
+                <span >Pilih</span>
+              </div> -->
+
+         
+        
+            </div>
+              <div class="toolbar toolbar-bottom ">
+                <div class="toolbar-inner bg-blue">
+                <a href="dashboard.html" class="link"
+                >
+
+                   <i class="fa fa-map-marker fa-2x"  ></i>
+                  <label class="label-icon" >Rekomendasi</label>
+                
+                </a>
+
+
+                  <a href="forms-elements.html" class="link">
+                    <i class="fa fa-search fa-2x "></i>
+                    <label class="label-icon">Cari</label>
+                    
+                  </a>
+
+<!-- 
+                  <a href="#tab-2" class="link"><i class="icon material-icons">today</i></a>
+ -->
+                <a  href="#" class="link" id="upload-link">
+                 <i class="fa fa-upload fa-2x " aria-hidden="true"></i>
+                   <label class="label-icon">Ajukan</label>
+                  
+                 </a>
+
+                  <a href="#" class="link" id="user-link">
+                      <i class="fa fa-user fa-2x "></i>
+                        <label class="label-icon">Pengguna</label>
+                       
+                  </a>
+
+                </div>
+              </div>
+          </div> <!-- end of page home index -->
+
+
+        </div>
+
+      </div>
+    </div>
+   
+ 
+    </div>
+ 
+    <div class="login-screen">
+      <div class="view user-page-login-register">
+        <div class="page" data-page="login-page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">
+             <a style="position:absolute;top:10px;left:10px;color:black" href="#" class="back  icon-only close-login">
+                  <!-- <i class="fa fa-minus"></i> -->
+              </a>
+               <img src="/img/warna.png" style="width: 120px;top: 10px;position: relative;margin:0 auto">
+              <!-- <i class=" fa fa-map"></i> -->
+           <!-- <img src="http://35utech.com/gambar/logo gispem.png" style="width:55px;"> -->
+           <br>
+ <b class="label-login">Masuk</b>
+</div>
+
+<!-- form login     -->
+<form  method="GET"  id="form-login" class="ajax-submit" action="http://gis.35utech.com/index.php?r=gis/login">
+  <div class="list-block inputs-list">
+    <ul>
+      <li class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">No Telepon</div>
+          <div class="item-input">
+            <input type="text" style="display: none;" name="last_lat" id="last_lat">
+            <input type="text" style="display: none;" name="last_lng" id="last_lng">
+            <input class="text-username" id="username" type="text" name="username" placeholder="No Telepon">
+          </div>
+        </div>
+      </li>
+      <li class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">Kata Sandi</div>
+          <div class="item-input">
+            <input id="password" type="password" name="password" placeholder="Kata Sandi">
+          </div>
+        </div>
+      </li>
+      <li class="item-content">
+      <!-- <div class="item-inner"> -->
+        <a href="#" id="forgot-password" class="col button open-password">
+          <div class="item-title label" style="margin-bottom: 10px;">lupa password?</div>
+        </a>
+        <!-- <div class="item-input"> -->
+            <!-- <input placeholder="Isi Captcha" type="text" id="defaultReal" name="defaultReal"> -->
+        <!-- </div> -->
+        <!-- </div> -->
+      </li>
+      <!-- <li class="item-content">
+      <div class="item-inner">
+        <div class="item-title label" style="margin-bottom: 10px;">Captcha</div>
+        <div class="item-input">
+            <input placeholder="Isi Captcha" type="text" id="defaultReal" name="defaultReal">
+        </div>
+      </div>
+      </li> -->
+    </ul>
+  </div>
+  <div class="content-block">
+  <!-- <a href="#" class="button button-big">Masuk</a> -->
+  <div class="buttons-row">
+                
+    <button style="color:white"  type="submit" class="col button button-fill color-green">
+    <i class="fa fa-sign-in "></i> Masuk</button>
+               
+    <a href="#" id="btn-register" 
+      style="color:white" class="button  button-round  bg-blue">
+        <i class="fa fa-user-plus "></i>
+      &nbsp;Daftar
+    </a>
+
+    <a href="#" style="color:white" class="close-login-screen button  button-round  bg-blue">
+        <i class="fa fa-arrow-left "></i>
+      Kembali
+    </a>
+  </div>
+
+
+</div>
+              
+              <div class="content-block">
+                <div class="list-block-label">Untuk Masuk Sistem, <br>Silahkan login berdasarkan no. telepon yang telah di berikan kepada petugas pada saat pendataan atau pada saat pendaftaran langsung.</div>
+              </div>
+            </form>
+
+
+             <form  method="post" style="display:none" id="form-register"  class="ajax-submit" 
+    action="http://gis.35utech.com/index.php?r=gis/register">
+              <div class="list-block inputs-list">
+                <ul>
+                <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Nama</div>
+                      <div class="item-input">
+                        <input class="text-username" id="nama_user" type="text" name="nama_user" placeholder="Nama User">
+                      </div>
+                    </div>
+                  </li>
+                <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Email</div>
+                      <div class="item-input">
+                        <input class="text-username" id="email2" type="text" name="email" placeholder="Email">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">No Telepon</div>
+                      <div class="item-input">
+                        <input class="text-username" id="username2" type="text" name="username" placeholder="No Telepon">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Kata Sandi</div>
+                      <div class="item-input">
+                        <input id="password2" type="password" name="password" placeholder="Kata Sandi">
+                      </div>
+                    </div>
+                  </li>
+                   <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Ulangi Kata Sandi</div>
+                      <div class="item-input">
+                        <input id="ulangi_password" type="password" name="repeat_password" placeholder="Ulangi Kata Sandi">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content" style="display: none;">
+                    <div class="item-inner">
+                      <div class="item-title label">Persetujuan</div>
+                      <div class="item-input">
+                      <label>
+                        <input id="persetujuan" type="checkbox" name="persetujuan" > Saya Setuju dengan syarat dan ketentuan 
+                      </label>
+
+                        <textarea>Dengan mengunduh, memasang, dan/atau menggunakan Aplikasi Tukang Dagang, Anda setuju bahwa Anda telah membaca, memahami dan menerima dan menyetujui Ketentuan Penggunaan ini ("Ketentuan Penggunaan"). Ketentuan Penggunaan ini merupakan suatu perjanjian sah antara Anda dan Tim TUkang Dagang  dan Layanan dan Aplikasi (sebagaimana didefinisikan di bawah ini) berlaku pada kunjungan dan penggunaan Anda pada situs web kami di sini.
+                        Kami tidak memberikan pernyataan, jaminan atau garansi untuk dapat diandalkannya, ketepatan waktu, kualitas, kesesuaian, ketersediaan, akurasi atau kelengkapan dari Layanan, Situs web dan/atau perangkat lunak Aplikasi, termasuk namun tidak terbatas pada Layanan yang diperoleh atau berasal dari Penyedia Layanan melalui penggunaan Aplikasi tersebut. Kami tidak menyatakan atau menjamin bahwa (a) penggunaan Layanan dan/atau Aplikasi akan aman, tepat waktu, tanpa gangguan atau terbebas dari kesalahan atau beroperasi dengan kombinasi dengan perangkat keras lain, perangkat lunak, sistem atau data, (b) Layanan akan memenuhi kebutuhan atau harapan anda, (c) setiap data yang tersimpan akan akurat atau dapat diandalkan, (d) kualitas produk, layanan, informasi, atau bahan-bahan lain yang dibeli atau diperoleh oleh anda melalui Aplikasi akan memenuhi kebutuhan atau harapan anda, (e) kesalahan atau kecacatan dalam Aplikasi akan diperbaiki, atau (f) aplikasi atau server(-server)) yang menyediakan Aplikasi terbebas dari virus atau komponen berbahaya lainnya, atau (g) Aplikasi melacak anda atau kendaraan yang digunakan oleh Penyedia Layanan. Layanan disediakan untuk anda terbatas hanya pada dasar "sebagaimana adanya". Semua kondisi, pernyataan dan jaminan, baik tersurat, tersirat, yang diwajibkan oleh undang-undang atau sebaliknya, termasuk, namun tidak terbatas pada, jaminan yang tersirat mengenai jual beli, kesesuaian untuk tujuan tertentu, atau tidak adanya pelanggaran hak pihak ketiga, dengan ini dikecualikan dan dikesampingkan dengan batas tertinggi dan maksimum. Anda mengakui dan menyetujui bahwa seluruh risiko yang timbul dari penggunaan Layanan oleh anda tetap semata-mata dan sepenuhnya ada pada anda dan anda tidak akan memiliki hak untuk meminta ganti rugi apapun dari perusahaan
+                        </textarea>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="content-block">
+              <!-- <a href="#" class="button button-big">Masuk</a> -->
+              <div class="buttons-row">
+                
+              <button style="color:white"  type="submit" class="button  button-round active  bg-blue">
+               <i class="fa fa-user-plus "></i>&nbsp;Daftar
+              </button>
+             <a style="color:white" id="btn-back-login"  type="button" class="button  button-round active  bg-blue">
+              <i class="fa fa-arrow-left "></i>
+               Kembali Login</a>
+               
+            
+              </div>
+
+
+              </div>
+              
+              <div class="content-block">
+                <div class="list-block-label">Untuk Masuk Sistem, <br>Silahkan login berdasarkan no. telepon yang telah di berikan kepada petugas pada saat pendataan.</div>
+              </div>
+            </form>
+            <form  method="post" style="display:none"  id="form-verifikasi"  class="ajax-submit" 
+    action="http://gis.35utech.com/index.php?r=gis/verifikasi">
+              <div class="list-block inputs-list">
+                <ul>
+                <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-input">rekomendasi
+                        <input id="phone-verifikasi" name="phone_verifikasi" type="text"  placeholder="No Telepon" readonly="" >
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Kode Verifikasi </div>
+                      <div class="item-input">
+                        <input id="verifikasi" type="text" name="kode_verifikasi" placeholder="Kode Verifikasi">
+                      </div>
+                    </div>
+                  </li>
+                 
+                </ul>
+              </div>
+              <div class="content-block">
+              <!-- <a href="#" class="button button-big">Masuk</a> -->
+              <div class="buttons-row">
+                
+              <button style="color:white"  type="submit" class="button  button-round active  bg-blue">
+              <i class="fa fa-check "></i>
+                Verifikasi 
+              </button>
+
+              <button id="btn-change-phone" style="color:white"  type="button" class="button  button-round active  bg-blue ">
+              <i class="fa fa-phone "></i>
+                Ganti Nomor 
+              </button>
+          
+               
+            
+              </div>
+
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+   <!--  <div class="picker-modal picker-modal-demo">
+      <div class="toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right"><a href="#" class="link close-picker">Done</a></div>
+        </div>
+      </div>
+      <div class="picker-modal-inner">
+        <div class="content-block">Integer mollis nulla id nibh elementum finibus. Maecenas eget fermentum ipsum. Sed sagittis condimentum nisl at tempus. Duis lacus libero, laoreet vitae ligula a, aliquet eleifend sapien. Nullam sodales viverra sodales.</div>
+      </div>
+    </div> -->
+
+    <div class="picker-modal picker-info" >
+      <div class="toolbar bg-red">
+        <div class="toolbar-inner">
+          <div class="left">
+            <p style="margin-left:10px">Petunjuk</p>
+          </div>
+          <div class="right">
+          <a href="#" style="color:white;margin-right:10px;" class="close-picker-navigasi">Selesai</a>
+          </div>
+        </div>
+      </div>
+      <div class="picker-modal-inner">
+        <div class="content-block" id="petunjuk-jalan" style="overflow: scroll!important;height: 200px!important;" >
+          
+        </div>
+      </div>
+    </div>
+
+     <div class="picker-modal picker-tracking" >
+      <div class="toolbar bg-red">
+        <div class="toolbar-inner">
+          <div class="left">
+            <p style="margin-left:10px">Segarkan Map Tukang Dagang</p>
+          </div>
+          <div class="right close-picker-refresh close-picker">
+          <a href="#" style="color:white;margin-right:10px;" >
+            <i class="fa fa-check"></i>
+          </a>
+          </div>
+        </div>
+      </div>
+      <div class="picker-modal-inner">
+       <div class="list-block"  style="overflow: scroll!important;height: 200px!important;">
+              <ul>
+              <li>
+              <label class="label-radio item-content">
+              <input type="radio" name="ks-radio" class="radio-refresh" value="Books" >
+              <div class="item-media"><i class="icon icon-form-radio"></i></div>
+              <div class="item-inner">
+              <div class="item-title">Segarkan Tukang Dagang sekali</div>
+              </div>
+              </label>
+              </li>
+              <li>
+              <label class="label-radio item-content">
+              <input type="radio" name="ks-radio" class="radio-realtime" value="Movies">
+              <div class="item-media"><i class="icon icon-form-radio"></i></div>
+              <div class="item-inner">
+              <div class="item-title">Tampilkan Tukang Dagang secara Realtime</div>
+              </div>
+              </label>
+              </li>
+             <!--  <li>
+              <label class="label-radio item-content">
+              <input type="radio" name="ks-radio" value="Food">
+              <div class="item-media"><i class="icon icon-form-radio"></i></div>
+              <div class="item-inner">
+              <div class="item-title">Food</div>
+              </div>
+              </label>
+              </li> -->
+             
+              </ul>
+        </div>
+      </div>
+    </div>
+
+<div id="tmp-location">
+  <div class="list-block media-list">
+     <ul></ul>
+  </div>
+</div>
+ <!--
+<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.1.min.js"></script>
+ -->
+<script src="js/highcharts.js"></script>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+<script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<!-- socket IO-->
+<!-- <script type="text/javascript" src="socket.io/socket.io.js"></script> -->
+
+<!-- jquery plugin -->
+<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+
+<!-- jRate JS -->
+<script type="text/javascript" src="js/jRate-master/dist/jRate.min.js"></script>
+
+<!-- news sticker -->
+<script type="text/javascript" src="js/tickerme/tickerme.min.js"></script>
+<link rel="stylesheet" type="text/css" href="js/tickerme/styles.css">
+   
+<!-- real person -->
+<link rel="stylesheet" type="text/css" href="js/realperson/jquery.realperson.css"> 
+<script type="text/javascript" src="js/realperson/jquery.plugin.js"></script> 
+<script type="text/javascript" src="js/realperson/jquery.realperson.js"></script>
+
+
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvVmsCWrbljIzw3O0nYDa0WQjr7LSmtFY&language=ID&libraries=geometry">
+    </script>
+<!--
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD73yWW4Pc6t7IoSAY-kEk8FZklVFJiFe8&callback=initMap&language=ID&libraries=geometry"
+async defer></script>
+
+-->
+
+
+<!--
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoQxgfnJsP-u-GyrANSqc8FW5m3tE7jgQ&language=ID&libraries=geometry&allback=initMap">
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&language=ID&libraries=geometry" async defer></script>  
+
+<script type="text/javascript" src="lib/framework7/plugins/toast/toast.js"></script>
+<link rel="stylesheet" href="lib/framework7/plugins/toast/toast.css">
+ -->
+
+
+<link rel="stylesheet" href="lib/framework7/js/welcomescreen.css">
+<script type="text/javascript" src="lib/framework7/js/welcomescreen.js"></script>
+<script type="text/javascript" src="lib/framework7/js/kitchen-sink.js"></script>
+
+<!-- <script type="text/javascript" src="lib/framework7/js/helper.js"></script>
+<script type="text/javascript" src="lib/framework7/js/custom.js"></script>
+ --> </body>
+</html>

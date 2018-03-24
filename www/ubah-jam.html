@@ -1,0 +1,96 @@
+<div data-page="ubah-jam" class="page">
+  <div class="navbar bg-blue">
+    <div class="navbar-inner">
+      <div class="left">
+
+      <a class="back link icon-only">
+
+       <i class="icon icon-back"></i>
+
+      </a>
+        <span class="preloader preloader-white" style="display:none"></span>
+
+      </div>
+      
+      <div class="center" id="title-add-produk">Ubah Jam</div>
+      <div class="right">
+     
+     <!--  <a href="#" class="link open-panel icon-only"><i class="icon icon-bars"></i>
+      </a>
+      -->
+
+      </div>
+    </div>
+  </div>
+  <div class="page-content">
+
+   
+
+<form enctype="multipart/form-data" class="list-block inputs-list ajax-submit form-add-produk"   
+method="POST" 
+id="form-ubah-jam"
+    action="http://gis.35utech.com/index.php?r=Ukm/updateajaxop">
+<ul>
+<li>
+<div class="item-content">
+<div class="item-media"><i class="fa fa-clock-o fa-2x"></i></div>
+<div class="item-inner">
+<div class="item-title label">Dari Jam</div>
+<div class="item-input item-input-field">
+
+
+<input type="hidden"  placeholder="" name="UkmOp[ukm_id]"  id="UkmOp_ukm_id" >
+<input type="hidden"  placeholder="" name="UkmOp[hari]"  id="UkmOp_ukm_hari" >
+<input type="time" required  placeholder="" name="UkmOp[jam_buka]" id="UkmOp_jam_buka" >
+</div>
+</div>
+</div>
+</li>
+<li >
+<div class="item-content">
+<div class="item-media"><i class="fa fa-clock-o fa-2x"></i></div>
+<div class="item-inner">
+<div class="item-title label">Sampai Jam</div>
+<div class="item-input item-input-field">
+<input type="time" required  placeholder="" name="UkmOp[jam_tutup]" id="UkmOp_jam_tutup" >
+</div>
+</div>
+</div>
+</li>
+<li >
+<div class="item-content">
+<div class="item-media"><i class="fa fa-question fa-2x"></i></div>
+<div class="item-inner">
+<div class="item-title label">Libur ?</div>
+<div class="item-input item-input-field">
+<input type="checkbox"   placeholder="" name="UkmOp[is_tutup]" id="UkmOp_is_tutup" >
+</div>
+</div>
+</div>
+</li>
+
+
+
+
+
+
+<li>    
+  <div class="content-block">
+
+  <p class="buttons-row">
+  <button type="submit" 
+   class=" bg-red button button-big button-fill button-raised color-blue">
+  <i class="fa fa-save"></i>
+  Simpan
+  </button>
+  </p>
+  </div>
+
+</li>
+
+
+
+</ul>
+</form>
+
+</div>
