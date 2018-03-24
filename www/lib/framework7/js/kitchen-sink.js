@@ -2488,6 +2488,7 @@ $$(document).on("click",".btn-add-cart",function(e){
     myApp.closePanel();
  });
 
+
 function cariById(id){
  
   var id_ukm = id;
@@ -2845,6 +2846,9 @@ function onSuccess(imageURI) {
   $$(document).on('click', '.btn-ganti-gambar', function (e) {
       $$("#Ukm_ganti_gambar").click();
   });
+
+
+  
   $$(document).on('change', '#Ukm_ganti_gambar', function (e) {
        $$('.form-ganti-gambar').trigger("submit");
 
@@ -4401,14 +4405,26 @@ function getListOrder(username, tabActive){
 
      });
 
+     $$(document).on("keyup",'#jumlah_kg', function (e) {
+        var kg = $(this).val();
+        var js = $("#jenissampah").val();
+        var total = parseInt(kg) * parseInt(js);
+        if (isNaN(total)){
+          $("#total_akhir").val(0);
+        }else{
+          $("#total_akhir").val(total);
+        }
+
+        
+     });
+
      $$(document).on("click",'.btn-topup-sampah', function (e) {
-         mainView.router.load({
+        mainView.router.load({
         url:"topup-sampah.html",
           query:{
             id: 123
           }    
         });
-
      })
      $$(document).on("click",'.btn-topup', function (e) {
        e.preventDefault();
@@ -4480,6 +4496,12 @@ function getListOrder(username, tabActive){
 
 
  
+   $$(document).on("click",'.btn-lihat-video', function (e) {
+      mainView.router.load({
+        url:"lihat-video.html"
+      });
+
+   });
    $$(document).on("click",'.btn-delete-fav', function (e) {
      e.preventDefault();
      var ukm_id = $$(this).attr("ukm_id");
@@ -4554,6 +4576,34 @@ function getListOrder(username, tabActive){
         }
       });
    }
+  $$(document).on('page:init', '.page[data-page="topup-sampah"]', function (e) {
+      // alert("123");
+      $("#username-sampah").val(window.localStorage.getItem("username"));
+      
+        $$('.form-submit-sampah').on('form:success', function (e) {
+         var xhr = e.detail.xhr; // actual XHR object
+
+        var data = e.detail.data; // Ajax response from action file
+        data = JSON.parse(data);
+        // alert(JSON.stringify(data));
+        if (data.success==false){
+          alert("gagal");
+        }else{
+          // alert("berhasil");
+              myApp.addNotification({
+              message: "Berhasil !! ",
+              button: {
+                    text: 'Tutup',
+                    // color: 'lightgreen'
+                  },
+                  hold : 1000
+             });
+            mainView.router.back();
+
+        }
+      });
+
+  });
   $$(document).on('page:init', '.page[data-page="view_order"]', function (e) {
       // var id = e.detail.id;
       var page = e.detail.page;
@@ -5592,6 +5642,9 @@ $$(document).on('click', '.btn-atm-dekat', function(e){
   
 });
 
+$$(document).on('click', '.btn-get-calon', function(e){
+
+});
 
 $$(document).on('click', '.btn-get-calon', function(e){
      var icon = {
@@ -5879,7 +5932,7 @@ function appendToList(result_marker){
 //     }  
           // var gambar  = server+"/images/bast/"+v.gambar;
           var gambar  = server+"/images/bast/120.jpg";
-          var tag_img = "<div style='background-image:url("+gambar+");width:80px;height:50px;background-size:cover'  ></div>";
+          var tag_img = "<div style='background-image:url("+gambar+");width:80px;height:120px;background-size:cover'  ></div>";
           // alert(gambar);
 //             <i class="fa fa-home fa-3x"></i>
       // ukm-id="'+v.id+'"  href="tabs-swipeable.html?id='+v.id+'"
