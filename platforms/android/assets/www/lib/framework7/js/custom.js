@@ -138,3 +138,55 @@ $$(document).on('click', '.open-nama-umkm', function (e) {
     }
   );
 });
+
+$$(document).on('click', '.btn-get-va', function (e) {
+    var ukm_id = window.localStorage.getItem("ukm_id");
+    var jumlah_sewpay = $("#sewpay-uang").attr("asli");
+    // console.log(jumlah_sewpay);
+  //   var ukm_id = window.localStorage.getItem("ukm_id");
+  //   myApp.prompt( 'Masukan Minumum Pemesanan', [ 'Minimum Pemesanan'],
+  //   function (value) {
+  //     if (value == '') {
+  //       customAlert('Minimum Pemesanan harap diisi', 'Peringatan');
+  //       // console.log("kosong");
+  //     } else {
+  //       // console.log("terisi");
+  //       // console.log(value);
+  //       if (validateNumber(value)) {
+  //           console.log("angka");
+            $$.ajax({
+                url: server+"/index.php?r=api/VirtualAccount",
+                data: {
+                    ukm_id: ukm_id, 
+                    jumlah_sewpay: jumlah_sewpay,
+                    tujuan:"bayar_tagihan", 
+                },
+                success:function(data){
+                    // if ()
+                    var d = JSON.parse(data);
+                    if (d.statusCode=="500"){
+                            // alert(d.payload.errors);
+                            alert(JSON.stringify(d.payload.errors));
+                        $$.each(d.payload.errors,function(d){
+                            alert(d.message);
+                        });
+                        // alert(JSON.stringify());
+                        // alert(d.payload.errors.message[0]);
+                    }
+                 },
+                error:function(err){
+                    console.log("error");
+                    console.log(err);
+                }
+            });
+  //       } else {
+  //           console.log("bukan angka");
+  //           customAlert('Format harus angka', 'Peringatan');
+  //       }  
+  //     }
+  //   },
+  //   function(value) {
+  //     // myApp.alert('silahkan check email anda', ['']);
+  //   }
+  // );
+});
