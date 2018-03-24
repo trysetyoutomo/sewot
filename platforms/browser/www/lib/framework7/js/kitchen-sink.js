@@ -2564,9 +2564,11 @@ function cariById(id){
             $$(".UMKM_bbm").attr("href","http://pin.bbm.com/"+data.telepon.substring(1,100));
             $$(".UMKM_sms").attr("href","sms:62"+data.telepon.substring(1,100)+"?body= Rumah 2018 \n");
             // alert(data.gambar);
-            $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.gambar+"'");
+            // $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.gambar+"'");
+            $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.id+".jpg'");
 
-            mainImageUMKM = [server+"/images/bast/"+data.gambar];
+            // mainImageUMKM = [server+"/images/bast/"+data.gambar];
+            mainImageUMKM = [server+"/images/bast/"+data.id+".jpg"];
             // alert(mainImageUMKM);
             myPhotoBrowserStandalone = myApp.photoBrowser({
                 photos : mainImageUMKM
@@ -2875,7 +2877,8 @@ function onSuccess(imageURI) {
              //            // color: 'lightgreen'
              //          }
              //    });
-              $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.gambar+"'");
+              // $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.gambar+"'");
+              $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.id+".jpg'");
           }
         });
     });
@@ -4043,18 +4046,22 @@ $$(document).on('page:init', '.page[data-page="request-list-bayar"]', function (
       data : "username="+username,
       success : function(r){
         var data = JSON.parse(r);
-            var poin = data.poin;
-           $$("#sewpay-uang").html(" - "+numberWithCommas(poin) );
-            $$("#sewpay-uang").attr("asli",data.poin);
-        // var tagih
+        var poin = data.poin;
+        $$("#sewpay-uang").html(" - "+numberWithCommas(poin) );
+        $$("#sewpay-uang").attr("asli",data.poin);
+        
+        var bulan = $$("#bulan-tagihan").val();
+        var tahun = $$("#tahun-tagihan").val();
+
             $$.ajax({
                 url : server+"/index.php?r=Gis/getTagihan",
-                data : "username="+username,
+                data : "username="+username+"&bulan="+bulan+"&tahun="+tahun,
                 success : function(r){
                   // alert(r);
                   $$(".nilai-tagihan").html(numberWithCommas(r)) ;
                   $$(".nilai-tagihan").attr("asli",r);
                   var takhir = parseInt(r)-parseInt(poin);
+                  $$(".nilai-akhir").attr("asli",takhir);
                   $$(".nilai-akhir").html(numberWithCommas(takhir));
                   // var data2 = JSON.parse(r);
                   // $$("#sewpay-uang").html(numberWithCommas(data.poin) );
@@ -5642,9 +5649,9 @@ $$(document).on('click', '.btn-atm-dekat', function(e){
   
 });
 
-$$(document).on('click', '.btn-get-calon', function(e){
+// $$(document).on('click', '.btn-get-calon', function(e){
 
-});
+// });
 
 $$(document).on('click', '.btn-get-calon', function(e){
      var icon = {
@@ -7455,7 +7462,7 @@ $$('#form-register').on('form:success', function (e) {
           // var d = e.detail.page.query.data_kategori;
       $$.ajax({
       url : server+"/index.php?r=BTN/GetNearestATM",
-      data : "lat="+$$("#val-lat").val()+"&lng="+$$("#val-lon").val()+"km=10000",
+      data : "lat="+$$("#val-lat").val()+"&lng="+$$("#val-lon").val()+"&km=10000",
       success : function(r){
            
           // alert(r);

@@ -139,9 +139,16 @@ $$(document).on('click', '.open-nama-umkm', function (e) {
   );
 });
 
+$$(document).on('click', '.btn-get-atm', function (e) {
+    mainView.router.load({
+      url:"atm-terdekat.html" 
+   });
+});
 $$(document).on('click', '.btn-get-va', function (e) {
     var ukm_id = window.localStorage.getItem("ukm_id");
     var jumlah_sewpay = $("#sewpay-uang").attr("asli");
+    var jumlah_akhir = $(".nilai-akhir").attr("asli");
+    alert(jumlah_akhir);
     // console.log(jumlah_sewpay);
   //   var ukm_id = window.localStorage.getItem("ukm_id");
   //   myApp.prompt( 'Masukan Minumum Pemesanan', [ 'Minimum Pemesanan'],
@@ -160,16 +167,18 @@ $$(document).on('click', '.btn-get-va', function (e) {
                     ukm_id: ukm_id, 
                     jumlah_sewpay: jumlah_sewpay,
                     tujuan:"bayar_tagihan", 
+                    jumlah_akhir:jumlah_akhir
                 },
                 success:function(data){
                     // if ()
                     var d = JSON.parse(data);
                     if (d.statusCode=="500"){
                             // alert(d.payload.errors);
-                            alert(JSON.stringify(d.payload.errors));
-                        $$.each(d.payload.errors,function(d){
-                            alert(d.message);
-                        });
+                            // alert(JSON.stringify(d.payload.errors));
+                            $$.each(d.payload.errors,function(s,v){
+                                // alert(s.message);
+                                alert(v.message);
+                            });
                         // alert(JSON.stringify());
                         // alert(d.payload.errors.message[0]);
                     }
