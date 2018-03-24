@@ -1,0 +1,355 @@
+
+<div  data-page="rincian-umkm" class="page   ">
+
+<div class="pull-to-refresh-layer">
+    <div class="preloader"></div>
+    <div class="pull-to-refresh-arrow"></div>
+ </div>
+
+<div style="display:none">
+  
+  <form enctype="multipart/form-data" class="list-block inputs-list ajax-submit form-add-produk"   method="POST" id="form-add-gambar"
+      action="http://gis.35utech.com/index.php?r=produk/gambar">
+      <input type="file" name="galeri" id="galeri" multiple>
+  </form>
+</div>
+
+<div class="popover tambah-menu">
+  <div class="popover-inner">
+    <div class="list-block">
+    <ul>
+      <li><a href="tambah-loker.html" class=" btn-popover list-button item-link">Tambah Gambar </a></li>
+      <li><a href="tambah-produk.html" class=" btn-popover list-button item-link">Tambah Fasilitas Tambahan</a></li>
+    <!--   <li><a href="#"  class="btn-popover list-button item-link btn-tambah-gambar">Tambah Gambar</a></li>
+ -->
+   
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+  <div class="navbar bg-blue">
+    <div class="navbar-inner">
+      <div class="left">
+      <a href="#" class="back link icon-only"><i class="icon icon-back"></i></a></div>
+      <div class="center rincian-top-label">Informasi Tukang Dagang </div>
+     
+
+      <div class="right">
+        <a href="#" class="link btn-add-cart icon-only"><i class="fa fa-cart-plus"></i></a>
+        <a href="#" class="link refresh-rincian icon-only"><i class="fa fa-refresh"></i></a>
+        <a href="#" data-popover=".tambah-menu" class="link icon-only open-popover btn-tambah-penjual">
+          <i class="icon icon-plus"></i>
+        </a>
+      </div>
+    </div>
+  </div> 
+  <div class="toolbar tabbar">
+    <div class="toolbar-inner bg-blue">
+    <a onclick="$$('.rincian-top-label').html('Informasi Umum')" href="#tab1" class="active tab-link"> 
+      <i class="fa fa-info fa-2x "></i>
+      <!-- <span class="tabbar-label">UMUM</span>  -->
+    </a>
+
+    <!--
+    <a onclick="$$('.rincian-top-label').html('Waktu Operasional')" href="#tab2" class="tab-link"> 
+
+      <i class="fa fa-clock-o fa-2x"></i>
+    </a>
+    -->
+      <!-- <span class="tabbar-label">OPERASIONAL</span>  -->
+   <!--  <a href="#tab3" class="tab-link">   
+     <i class="fa fa-picture-o fa-2x"></i>FA
+
+      </a> -->
+      <!-- <span class="tabbar-label">GALERI</span>  -->
+    <a onclick="$$('.rincian-top-label').html('  Tambahan')" href="#tab4" class="tab-link"><i class="fa fa-list-alt fa-2x"></i></a>
+    <a onclick="$$('.rincian-top-label').html('Gambar')" href="#tab5" class="tab-link"><i class="fa fa-picture-o fa-2x"></i></a>
+    <!-- <a onclick="$$('.rincian-top-label').html('Review')" href="#tab6" class="tab-link"> <i class="fa fa-star fa-2x"></i></a> -->
+    </div>
+  </div>
+  <div class="tabs-swipeable-wrap">
+    <div class="tabs">
+      <div id="tab1" class="page-content tab active">
+        <div class="content-block">
+          <p>Informasi Umum</p>
+          <div class="list-block media-list">
+            <ul>
+
+             <li id="background-umkm" 
+             style="
+              
+                height: 200px;
+                background-size: cover;
+                background-position: center center;"
+               >
+
+            </li>
+            <li>
+<a href="#" class="btn-ganti-gambar button button-big button-fill button-raised bg-red" ukm_id ="">
+  <i class="fa fa-picture-o "></i>
+  Ganti Gambar
+</a>
+
+<form enctype="multipart/form-data" class="list-block inputs-list ajax-submit form-ganti-gambar"   method="POST"  id="form-ganti-gambar" style="display:none"  action="http://gis.35utech.com/index.php?r=Ukm/ganti_gambar">
+<input type="hidden" value="" id="Ukm_id" name="Ukm[id]">
+  <input  type="file" placeholder="" accept="image/*;capture=camera"
+  name="ganti_gambar" id="Ukm_ganti_gambar">
+
+</form>
+            </li>
+          
+            <li id="row_User_nama_umkm">
+                <a href="#" class="item-link item-content">
+                <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/1" width="80"></div> -->
+                <div class="item-inner">
+                <div class="item-title-row">
+                <div class="item-title">Nama Usaha</div>
+                <div class="item-after"></div>
+                </div>
+                <div class="item-subtitle"></div>
+                <div  class=" item-text UMKM_nama"></div>
+                </div>
+                </a>
+
+            </li>
+               <li id="row_User_nama_umkm_pemilik">
+                <a href="#" class="item-link item-content">
+                <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/1" width="80"></div> -->
+                <div class="item-inner">
+                <div class="item-title-row">
+                <div class="item-title">Nama Pemilik</div>
+                <div class="item-after"></div>
+                </div>
+                <div class="item-subtitle"></div>
+                <div  class=" item-text UMKM_nama_pemilik"></div>
+                </div>
+                </a>
+
+            </li>
+
+            <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/2" width="80"></div> -->
+            <!--
+            <li>
+            <a href="#" class="item-link item-content">
+            <div class="item-inner">
+            <div class="item-title-row">
+            <div class="item-title">Kategori</div>
+            <div class="item-after"></div>
+            </div>
+            <div class="item-subtitle"></div>
+            <div class="item-text UMKM_kategori" ></div>
+            </div></a>
+            </li>
+            -->
+            
+            <li>
+              <a href="#" class="item-link item-content">
+              <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80"></div> -->
+              <div class="item-inner">
+              <div class="item-title-row">
+              <div class="item-title">Alamat</div>
+              <div class="item-after"></div>
+              </div>
+              <!-- <div class="item-subtitle">Michael Jackson</div> -->
+              <div class="item-text UMKM_alamat"></div>
+              </div></a>
+            </li>
+            <li class="khusus-tetap" style="display: none;">
+              <a href="#" class="item-link item-content">
+              <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80"></div> -->
+              <div class="item-inner">
+              <div class="item-title-row">
+              <div class="item-title">Bisa Kirim Pesanan ?</div>
+              <div class="item-after"></div>
+              </div>
+              <!-- <div class="item-subtitle">Michael Jackson</div> -->
+              <div class="item-text UMKM_kirim_pesanan"></div>
+              </div></a>
+            </li>
+               <li style="display: none;">
+              <a href="#" class="item-link item-content">
+              <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80"></div> -->
+              <div class="item-inner">
+              <div class="item-title-row">
+              <div class="item-title">Keterangan</div>
+              <div class="item-after"></div>
+              </div>
+              <!-- <div class="item-subtitle">Michael Jackson</div> -->
+              <div class="item-text UMKM_keterangan"></div>
+              </div></a>
+            </li>
+             <li style="display:none">
+              <a href="#" class="item-link item-content">
+              <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80"></div> -->
+              <div class="item-inner">
+              <div class="item-title-row">
+              <div class="item-title">Kelurahan</div>
+              <div class="item-after"></div>
+              </div>
+              <!-- <div class="item-subtitle">Michael Jackson</div> -->
+              <div class="item-text UMKM_kelurahan"></div>
+              </div></a>
+            </li>
+             <li style="display:none">
+              <a href="#" class="item-link item-content">
+              <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80"></div> -->
+              <div class="item-inner">
+              <div class="item-title-row">
+              <div class="item-title">Kecamatan</div>
+              <div class="item-after"></div>
+              </div>
+              <!-- <div class="item-subtitle">Michael Jackson</div> -->
+              <div class="item-text UMKM_kecamatan"></div>
+              </div></a>
+            </li>
+              <li style="display:none">
+
+              <a href="#" class="item-link item-content">
+              <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80"></div> -->
+              <div class="item-inner">
+              <div class="item-title-row">
+              <div class="item-title">RW</div>
+              <div class="item-after"></div>
+              </div>
+              <!-- <div class="item-subtitle">Michael Jackson</div> -->
+              <div class="item-text UMKM_rw"></div>
+              <div class="item-text UMKM_lat"></div>
+              <div class="item-text UMKM_lon"></div>
+              </div></a>
+            </li>
+
+             <li style="display: none;">
+              <a href="#" class="item-link item-content">
+              <!-- <div class="item-media"><img src="http://lorempixel.com/160/160/people/3" width="80"></div> -->
+              <div class="item-inner">
+              <div class="item-title-row">
+              <div class="item-title">Ulasan</div>
+              <div class="item-after"></div>
+              </div>
+              <!-- <div class="item-subtitle">Michael Jackson</div> -->
+              <div class="item-text "></div>
+              </div></a>
+            </li>
+
+
+              
+
+               <li style="display: none;">
+                <h3>
+                <i class="fa fa-send"></i>
+                Kirim Poin</h3>
+                <hr>
+                 <a href="#" class="btn-kirim-poin button button-big button-fill button-raised bg-red" ukm_id ="">
+                    <i class="fa fa-money "></i>
+                      Masukan Jumlah Poin
+                  </a>
+
+
+              </li>
+
+            </ul>
+
+            </div>
+
+<!-- 
+          <a style="color:#D85404" href="#" class="UMKM_bbm link external button button-round">
+          <b>BBM</b>
+          </a> -->
+
+          <div class="buttons-row">
+              <a href="#" class="UMKM_wa link external button button-round"><i style="color:#D85404" class="fa fa-whatsapp  fa-2x"></i>
+              </a>
+              <a href="#" class="UMKM_tel link external button button-round"><i style="color:#D85404" class="fa fa-phone fa-2x"></i>
+              </a>
+            
+              <a href="#" class="UMKM_sms link external button button-round">
+                <i style="color:#D85404" class="fa fa-commenting  fa-2x"></i>
+              </a>
+
+
+              <a href="#" class="btn-add-cart link  button button-raisedound">
+                <i style="color:#D85404" class="fa fa-cart-plus  fa-2x"></i>
+              </a>
+          </div>
+
+        </div>
+      </div>
+  <!--   
+      <div id="tab2" class="page-content tab">
+      <div class="content-block">
+          <p>Jam Operasional</p>
+          <div class="list-block media-list">
+            <ul id="list-jam-operasional"></ul>
+          </div>
+          
+        </div>
+      </div>
+    <div id="tab3" class="page-content tab" style="display:none">
+        <div class="content-block" style="margin-top:70px">
+          <div class="content-block-inner">
+            <p>
+              <img data-src="http://lorempixel.com/500/500/nature/1" width="100%" class="lazy lazy-fadeIn">
+            </p>
+
+          </div>
+  </div>
+      </div> -->
+        <div id="tab4" class="page-content tab">
+          <div class="content-block">
+          <div class="list-block media-list" style="margin-top:70px">
+              <ul id="list-produk"></ul>
+              </div>
+          </div>
+      </div>
+
+      <div id="tab5" class="page-content tab">
+          <div class="content-block">
+          <div class="list-block media-list" style="margin-top:70px">
+              <ul id="list-loker">
+             
+       
+              </ul>
+              </div>
+          </div>
+        </div>
+
+         <div id="tab6" class="page-content tab" style="display: none;">
+          <div class="content-block">
+          <div class="list-block media-list" style="margin-top:70px">
+            <ul>
+              <li>
+                <h3><i class="fa fa-star"></i>&nbsp;Berikan Ulasan - 
+                <div style="display: inline;" class="UMKM_ulasan" ></div>
+
+                </h3>
+                <hr>
+                <div style="width: 300px;margin: 0 auto;" class="jRate" data-umkm=""></div>
+
+              </li>
+              <li>
+                <h3><i class="fa fa-commenting"></i>&nbsp;Tulis Komentar</h3>
+                <hr>
+                <textarea id="text-komentar" placeholder="Tulis Komentarmu tentang Tukang Dagang ini" style="width: 100%;height: 60px;"></textarea>
+                <a style="color:white;" href="" class="button button-big button-fill button-raised bg-blue  btn-kirim-komentar">
+                    <i class="fa fa-send" aria-hidden="true"></i> Kirim
+                </a>
+                
+                <div style="margin: 0 auto;" class="list-comment-td" id="list-comment-td"  data-umkm="">
+                  </div>
+                
+                  
+              </li>
+            </ul>
+          </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

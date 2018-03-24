@@ -4057,15 +4057,25 @@ $$(document).on('page:init', '.page[data-page="request-list-bayar"]', function (
                 url : server+"/index.php?r=Gis/getTagihan",
                 data : "username="+username+"&bulan="+bulan+"&tahun="+tahun,
                 success : function(r){
-                  // alert(r);
-                  $$(".nilai-tagihan").html(numberWithCommas(r)) ;
-                  $$(".nilai-tagihan").attr("asli",r);
-                  var takhir = parseInt(r)-parseInt(poin);
-                  $$(".nilai-akhir").attr("asli",takhir);
-                  $$(".nilai-akhir").html(numberWithCommas(takhir));
-                  // var data2 = JSON.parse(r);
-                  // $$("#sewpay-uang").html(numberWithCommas(data.poin) );
-                  // $$("#sewpay-uang").attr("asli",data.poin);
+                  // if (poin>0){
+
+                  // }
+                  if (parseInt(r)>0){
+                    $$(".nilai-tagihan").html(numberWithCommas(r)) ;
+                    $$(".nilai-tagihan").attr("asli",r);
+                    var takhir = parseInt(r)-parseInt(poin);
+                    $$(".nilai-akhir").attr("asli",takhir);
+                    $$(".nilai-akhir").html(numberWithCommas(takhir));
+                  }else{
+                    poin = 0;
+                    $$(".nilai-tagihan").attr("asli",0);
+                    $$(".nilai-tagihan").html(0);
+                    var takhir = parseInt(r)-parseInt(poin);
+                    $$(".nilai-akhir").attr("asli",takhir);
+                    $$(".nilai-akhir").html(numberWithCommas(takhir));
+
+                  }
+
                 },error: function(e){
                   alert(JSON.stringify(e));
                 }
@@ -4740,6 +4750,7 @@ $$(document).on('click','.btn-user-out', function () {
                 var data = JSON.parse(r);
                 if (data.success){
                       window.localStorage.removeItem("isLogged");
+                      window.localStorage.removeItem("email");
                       window.localStorage.removeItem("username");
                       window.localStorage.removeItem("ukm_id");
                       window.localStorage.removeItem("ukm_tipe");
