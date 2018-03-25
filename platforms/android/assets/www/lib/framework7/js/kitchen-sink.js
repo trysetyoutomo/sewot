@@ -2360,11 +2360,18 @@ $$(document).on("click","#li_button_peng_saya",function(e){
  
  
 });
+var harga_rumah = 0;
 $$(document).on("click",".btn-check-out",function(e){
     var order = [];
     var ttl = 0;
+    var id = 0;
+
     var alamat = geocodePositionReturn(new google.maps.LatLng($$("#val-lat").val(), $$("#val-lon").val() ) );
     // alert(jarak);
+    // alert(harga_rumah);
+
+    // alert($$("#harga-sewa-rumah").attr("asli"));
+    // alert(harga_rumah);
     // $$("#jarak-td").html(jarak);
     $$(".order-qty").each(function(e){
         var nama = $$(this).closest(".item-inner").find(".item-title-row").find(".item-title").find(".nama-item").html();
@@ -2372,6 +2379,7 @@ $$(document).on("click",".btn-check-out",function(e){
         
         if (parseInt($$(this).val())>0){
             ttl++;
+            id = $$(this).attr("ukm_id");
             order.push(
                 {
                     "ukm_id":$$(this).attr("ukm_id"),
@@ -2387,12 +2395,16 @@ $$(document).on("click",".btn-check-out",function(e){
 
 
     });
+    // getHargaRumah(id);
+    // alert(harga_rumah);
     // alert(JSON.stringify(order));
     // if ( ttl>0 ){
         mainView.router.load({
             url:"cekout.html",
             query:{
-              order : order
+              order : order,
+              id : id,
+              harga_rumah : harga_rumah
           }
         });
     // }else{
@@ -2411,12 +2423,36 @@ $$(document).on("click",".btn-check-out",function(e){
 $$(document).on('page:init', '.page[data-page="tambah-cart"]', function (e) {
     var id =e.detail.page.query.id;
     GetProdukByUMKM(id);
+    getHargaRumah(id);
 });
 // $$(document).on('page:mounted', '.page[data-page="cekout"]', function (e) {
 //   alert("masuk");
 // });
+ 
+  function getHargaRumah(id){
+    var harga = 0;
+    $$.ajax({
+      url : server+"/index.php?r=Ukm/getHarga",
+      data : "id="+id,
+      success : function(r){
+        // alert(r);
+        // doWork(r);
+        // harga = r;
+        harga_rumah = r;
+      }
+    });
+    return harga;
+  }
+$$(document).on('page:afterin', '.page[data-page="cekout"]', function (e) {
+    alert("123");
+});
 $$(document).on('page:init', '.page[data-page="cekout"]', function (e) {
     var order =e.detail.page.query.order;
+    var id =e.detail.page.query.id;
+    var harga_r =e.detail.page.query.harga_rumah;
+    $$("#harga-sewa-rumah").html(numberWithCommas(harga_r) );
+    $$("#harga-sewa-rumah").attr("asli",harga_r);
+
 
     var total_order = 0;
       if (order.length>0){
@@ -2447,6 +2483,10 @@ $$(document).on('page:init', '.page[data-page="cekout"]', function (e) {
                 '</li>';
                 $$("#cart-beli-cekout").append(string);
           });
+          // var harga_asli = $$("#harga-sewa-rumah").attr("asli");
+          // var harga_asli2 = $$("#harga-sewa-rumah").html();
+         
+          total_order+= parseInt(harga_r);
           $$("#total-biaya").html(numberWithCommas(total_order) );
           $$("#total-biaya").attr("value",total_order);
             var jarak = roundToTwo(getDistance($$("#val-lat").val(),$$("#val-lon").val(),$$(".UMKM_lat").html(),$$(".UMKM_lon").html(),"K"));
@@ -2473,7 +2513,7 @@ $$(document).on('page:init', '.page[data-page="cekout"]', function (e) {
 });
 
 $$(document).on("click",".btn-add-cart",function(e){
-  if (window.localStorage.getItem("isLogged")!="1"){
+if (window.localStorage.getItem("isLogged")!="1"){
       myApp.loginScreen();
      exit;
   }
@@ -2549,6 +2589,11 @@ function cariById(id){
             $$(".UMKM_produk").html(data.produk);
             $$(".UMKM_lat").html(data.lat);
             $$(".UMKM_lon").html(data.lon);
+            $$(".UMKM_harga").html(numberWithCommas(data.harga)+" / "+data.satuan_minimal);
+            $$(".UMKM_harga").attr("asli",data.harga);
+
+            $$(".UMKM_minimal").html(numberWithCommas(data.minimal)+" "+data.satuan_minimal);
+
             if (data.delivery=="0"){   
                 $$(".UMKM_kirim_pesanan").html("Tidak");
             }else{
@@ -2565,7 +2610,8 @@ function cariById(id){
             $$(".UMKM_sms").attr("href","sms:62"+data.telepon.substring(1,100)+"?body= Rumah 2018 \n");
             // alert(data.gambar);
             // $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.gambar+"'");
-            $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.id+".jpg'");
+            $$("#background-umkm").css("background-image","url('"+server+"/images/bast/120.jpg");
+            // $$("#background-umkm").css("background-image","url('"+server+"/images/bast/"+data.id+".jpg'");
 
             // mainImageUMKM = [server+"/images/bast/"+data.gambar];
             mainImageUMKM = [server+"/images/bast/"+data.id+".jpg"];
@@ -3037,6 +3083,26 @@ function getPoint(username){
   });
 
 $$(document).on('page:init', '.page[data-page="add-umkm"]', function (e) {
+
+  if (!isNaN(window.localStorage.getItem("ukm_id"))) {
+        myApp.addNotification({
+          message: " Rumah anda telah aktif ",
+          closeOnClick: true,
+          on: {
+            close: function () {
+              mainView.router.back();
+            },
+          },
+          button: {
+                text: 'Tutup',
+              },
+              hold : 4000
+         });
+        $$(".form-add-ukm").hide();
+        $$("#hint-aktif").show()
+    }else{
+      $$("#hint-aktif").hide();
+    }
 
   var kel =e.detail.page.query.kel;
   var title =e.detail.page.query.title;
@@ -4041,13 +4107,23 @@ $$(document).on('page:init', '.page[data-page="request-list"]', function (e) {
 // }
 $$(document).on('page:init', '.page[data-page="request-list-bayar"]', function (e) {
   var username = window.localStorage.getItem("username");
+    getTagihan(username);
+    $$(document).on("click",".btn-cari-tagihan",function(e){
+      getTagihan(username);
+    });
+
+    function getTagihan(username){
     $$.ajax({
       url : server+"/index.php?r=Gis/GetPoin",
       data : "username="+username,
       success : function(r){
         var data = JSON.parse(r);
         var poin = data.poin;
-        $$("#sewpay-uang").html(" - "+numberWithCommas(poin) );
+
+        if (parseInt(poin)<0){
+          poin = 0;
+        }
+        $$("#sewpay-uang").html(numberWithCommas(poin) );
         $$("#sewpay-uang").attr("asli",data.poin);
         
         var bulan = $$("#bulan-tagihan").val();
@@ -4060,6 +4136,7 @@ $$(document).on('page:init', '.page[data-page="request-list-bayar"]', function (
                   // if (poin>0){
 
                   // }
+                  // alert(r);
                   if (parseInt(r)>0){
                     $$(".nilai-tagihan").html(numberWithCommas(r)) ;
                     $$(".nilai-tagihan").attr("asli",r);
@@ -4068,6 +4145,8 @@ $$(document).on('page:init', '.page[data-page="request-list-bayar"]', function (
                     $$(".nilai-akhir").html(numberWithCommas(takhir));
                   }else{
                     poin = 0;
+                    $$("#sewpay-uang").html(numberWithCommas(poin) );
+                    $$("#sewpay-uang").attr("asli",data.poin);
                     $$(".nilai-tagihan").attr("asli",0);
                     $$(".nilai-tagihan").html(0);
                     var takhir = parseInt(r)-parseInt(poin);
@@ -4080,17 +4159,12 @@ $$(document).on('page:init', '.page[data-page="request-list-bayar"]', function (
                   alert(JSON.stringify(e));
                 }
             });
-     
-        // alert(r);
-          // return data.poin;
-          //   // alert(data.poin);
-          // window.localStorage.setItem("point", data.poin);
-          // $("#value-poinku").html(data.poin);
          
       },error: function(e){
         alert(JSON.stringify(e));
       }
   });
+  }
   
 });
 
@@ -4422,8 +4496,19 @@ function getListOrder(username, tabActive){
 
      });
 
+     $$(document).on("change",'#jenissampah', function (e) {
+        var kg = $("#jumlah_kg").val();
+        var js = $("#jenissampah").val();
+        var total = parseInt(kg) * parseInt(js);
+        if (isNaN(total)){
+          $("#total_akhir").val(0);
+        }else{
+          $("#total_akhir").val(total);
+        }
+
+     });
      $$(document).on("keyup",'#jumlah_kg', function (e) {
-        var kg = $(this).val();
+        var kg = $("#jumlah_kg").val();
         var js = $("#jenissampah").val();
         var total = parseInt(kg) * parseInt(js);
         if (isNaN(total)){
@@ -4593,6 +4678,54 @@ function getListOrder(username, tabActive){
         }
       });
    }
+
+  $$(document).on('page:init', '.page[data-page="page-lihat-video"]', function (e) {
+    function timer(seconds, cb) {
+      var remaningTime = seconds;
+      window.setTimeout(function() {
+        cb();
+        $$(".timer-count").html(remaningTime);
+        // console.log(remaningTime);
+        if (remaningTime > 0) {
+          timer(remaningTime - 1, cb); 
+        }
+      }, 1000);
+    }
+
+    var callback = function() {
+      // console.log('callback');
+    };
+  timer(30, callback);    
+  setTimeout(function(e){    
+    $$.ajax({
+        url : server+"/index.php?r=Gis/topupPoint",
+        data : "username-sampah="+window.localStorage.getItem("username")+"&total_akhir=50",
+        success : function(r){
+          var d = JSON.parse(r);
+          if (d.success){
+            
+
+
+                myApp.addNotification({
+                message: " Selamat anda mendapat kredit ",
+                button: {
+                      text: 'Tutup',
+                    },
+                    hold : 1000
+               });
+                mainView.router.back();
+            
+          }
+        
+        },error: function(e){
+          alert("error "+JSON.stringify(e));
+        }
+    }); ///end ajax
+
+  },30000);
+    
+
+  });
   $$(document).on('page:init', '.page[data-page="topup-sampah"]', function (e) {
       // alert("123");
       $("#username-sampah").val(window.localStorage.getItem("username"));
@@ -6839,7 +6972,7 @@ $$('#form-register').on('form:success', function (e) {
         // $$(".bg-green").css("background-color","blue");
             $$(".btn-tambah-penjual").css("display","flex");
 
-            $$(".float-button-cepat").show(); // add float button
+            $$(".float-button-cepat").hide(); // add float button
           
             $$(".panel-right .btn-add-umkm").hide();
             $$("#li_button_fav_saya").show();
@@ -7027,7 +7160,7 @@ $$('#form-register').on('form:success', function (e) {
 
     }else{
        myApp.addNotification({
-          message: " Anda belum memiliki Usaha, Silahkan Ajukan Usaha Anda ",
+          message: " Anda belum memiliki Rumah yang akan disewakan, Silahkan Ajujan ",
           buttonkey:  {
               text: 'Tutup',
           },
@@ -7084,6 +7217,7 @@ $$('#form-register').on('form:success', function (e) {
   });
   $$(document).on("click","#upload-link",function(e){
     // e.preventDefault();
+
     $("#defaultReal").realperson();
 
     $$("#label-add-umkm").html("Ajak Rumah");
@@ -7110,7 +7244,7 @@ $$('#form-register').on('form:success', function (e) {
             query:{
               kel: lurah,
               iskarang: false,
-              title: "Ajukan Rumah"
+              title: "Ajukan Rumahmu  "
             }    
           });
           myApp.closePanel("right");

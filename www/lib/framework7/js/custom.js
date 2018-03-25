@@ -145,42 +145,55 @@ $$(document).on('click', '.btn-get-atm', function (e) {
    });
 });
 $$(document).on('click', '.btn-get-va', function (e) {
+    var c = confirm("Yakin Melakukan Pembayaran Dengan Virtual Account ?");
+    if (!c){
+        return false;
+    }
+
     var ukm_id = window.localStorage.getItem("ukm_id");
     var jumlah_sewpay = $("#sewpay-uang").attr("asli");
     var jumlah_akhir = $(".nilai-akhir").attr("asli");
-    alert(jumlah_akhir);
-    // console.log(jumlah_sewpay);
-  //   var ukm_id = window.localStorage.getItem("ukm_id");
-  //   myApp.prompt( 'Masukan Minumum Pemesanan', [ 'Minimum Pemesanan'],
-  //   function (value) {
-  //     if (value == '') {
-  //       customAlert('Minimum Pemesanan harap diisi', 'Peringatan');
-  //       // console.log("kosong");
-  //     } else {
-  //       // console.log("terisi");
-  //       // console.log(value);
-  //       if (validateNumber(value)) {
-  //           console.log("angka");
+
+    if ( parseInt(jumlah_akhir)<=0){
+      myApp.addNotification({
+          message: " Tagihan Kosong ",
+          button: {
+                text: 'Tutup',
+              },
+              hold : 2000
+         });
+      exit;
+    }
+    var bulan = $$("#bulan-tagihan").val();
+    var tahun = $$("#tahun-tagihan").val();
             $$.ajax({
                 url: server+"/index.php?r=api/VirtualAccount",
                 data: {
                     ukm_id: ukm_id, 
                     jumlah_sewpay: jumlah_sewpay,
                     tujuan:"bayar_tagihan", 
-                    jumlah_akhir:jumlah_akhir
+                    jumlah_akhir:jumlah_akhir,
+                    bulan : bulan,
+                    tahun : tahun
                 },
                 success:function(data){
                     // if ()
                     var d = JSON.parse(data);
                     if (d.statusCode=="500"){
-                            // alert(d.payload.errors);
-                            // alert(JSON.stringify(d.payload.errors));
-                            $$.each(d.payload.errors,function(s,v){
-                                // alert(s.message);
-                                alert(v.message);
-                            });
-                        // alert(JSON.stringify());
-                        // alert(d.payload.errors.message[0]);
+                        $$.each(d.payload.errors,function(s,v){
+                            alert(v.message);
+                        });
+                    }else if (d.success){
+                      myApp.addNotification({
+                          message: "Tagihan Berhasi DI Bayar",
+                          buttonkey:  {
+                              text: 'Tutup',
+                          },
+                          hold : 2000
+                      });
+                      mainView.router.back();
+
+
                     }
                  },
                 error:function(err){
