@@ -2796,14 +2796,14 @@ function cariById(id){
 
              string = '<li class="hold-hapus-loker" data-nama="'+v.nama+'" data-keterangan="'+v.keterangan+'"  l_id="'+v.id+'" ukm_id="'+v.ukm_id+'"  >'+
                 '<a href="#" class="item-link item-content">'+
-                     '<div class="item-media"><img src="'+img+'" width="80"></div>'+    
-                  '<div class="item-inner">'+
-                  '<div class="item-title-row" style="background-image:url()">'+
-                  '<div class="item-title"> '+v.nama+'</div>'+
-                  '<div class="item-after"></div>'+
-                '</div>'+
-                '<div class="item-text ">'+ke+'</div>'+
-                '</div></a>'+
+                     '<div class="item-media"><img src="'+img+'" height="300px" width="400px"></div>'+    
+//                  '<div class="item-inner">'+
+//                  '<div class="item-title-row" style="background-image:url()">'+
+//                  '<div class="item-title"> '+v.nama+'</div>'+
+//                  '<div class="item-after"></div>'+
+//                '</div>'+
+//                '<div class="item-text ">'+ke+'</div>'+
+//                '</div></a>'+
               '</li>';
               $$("#list-loker").append(string);
               // alert(string);
